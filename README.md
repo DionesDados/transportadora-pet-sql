@@ -102,7 +102,7 @@ transportadora-pet-sql
 
 # ▶ Como Executar
 
-1. Clone este repositório
+1. Cole este repositório.
 
 ```
 git clone https://github.com/DionesDados/transportadora-pet-sql.git
