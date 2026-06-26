@@ -54,7 +54,7 @@ O projeto possui as seguintes tabelas:
 O diagrama abaixo representa a estrutura completa do banco de dados.
 
 <p align="center">
-    <img src="modelo_relacional.png" width="1000">
+    <img src="modelo_relacional.png" width="500">
 </p>
 
 ---
