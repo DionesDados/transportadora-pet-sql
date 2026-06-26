@@ -52,11 +52,9 @@ O projeto possui as seguintes tabelas:
 # 📊 Diagrama Entidade-Relacionamento (DER)
 
 O diagrama abaixo representa a estrutura completa do banco de dados.
-
 <p align="center">
-    <img src="modelo_relacional.png" width="500">
+  <img src="./imagens/modelo_relacional.png" alt="Modelo Relacional" width="900">
 </p>
-
 ---
 
 # 🔍 Consultas Implementadas
