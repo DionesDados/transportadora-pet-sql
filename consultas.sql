@@ -3,16 +3,21 @@
 -- ARQUIVO: consultas.sql
 -- =====================================================
 
--- 1. LISTAR TODOS OS MOTORISTAS
+-- 1. LISTAR TODAS AS TABELAS
+SELECT name 
+FROM sqlite_master 
+WHERE type='table';
+
+-- 2. LISTAR TODOS OS MOTORISTAS
 SELECT * FROM MOTORISTAS;
 
--- 2. LISTAR TODOS OS CLIENTES
+-- 3. LISTAR TODOS OS CLIENTES
 SELECT * FROM CLIENTES;
 
--- 3. LISTAR TODOS OS VEÍCULOS
+-- 4. LISTAR TODOS OS VEÍCULOS
 SELECT * FROM VEICULOS;
 
--- 4. INNER JOIN
+-- 5. INNER JOIN
 SELECT
     M.nome_motorista,
     NF.numero_nota,
@@ -21,7 +26,7 @@ FROM NOTAS_FISCAIS NF
 INNER JOIN MOTORISTAS M
 ON NF.id_motorista = M.id_motorista;
 
--- 5. INNER JOIN ENTRE CLIENTES E ROTAS
+-- 6. INNER JOIN ENTRE CLIENTES E ROTAS
 SELECT
     C.nome_cliente,
     R.cidade_destino,
@@ -32,7 +37,7 @@ ON NF.id_cliente = C.id_cliente
 INNER JOIN ROTAS R
 ON NF.id_rota = R.id_rota;
 
--- 6. LEFT JOIN
+-- 7. LEFT JOIN
 SELECT
     M.nome_motorista,
     T.dias_ida,
@@ -41,19 +46,19 @@ FROM MOTORISTAS M
 LEFT JOIN TEMPO_ENTREGA T
 ON M.id_motorista = T.id_motorista;
 
--- 7. ORDER BY
+-- 8. ORDER BY
 SELECT *
 FROM PRODUTOS
 ORDER BY peso_kg DESC;
 
--- 8. GROUP BY
+-- 9. GROUP BY
 SELECT
     forma_pagamento,
     SUM(valor_parcela) AS total_recebido
 FROM PAGAMENTOS_CLIENTES
 GROUP BY forma_pagamento;
 
--- 9. HAVING
+-- 10. HAVING
 SELECT
     forma_pagamento,
     SUM(valor_parcela) AS total_recebido
@@ -61,42 +66,42 @@ FROM PAGAMENTOS_CLIENTES
 GROUP BY forma_pagamento
 HAVING SUM(valor_parcela) > 10000;
 
--- 10. COUNT
+-- 11. COUNT
 SELECT COUNT(*) AS quantidade_motoristas
 FROM MOTORISTAS;
 
--- 11. AVG
+-- 12. AVG
 SELECT AVG(valor_nota) AS media_notas
 FROM NOTAS_FISCAIS;
 
--- 12. MAX
+-- 13. MAX
 SELECT MAX(valor_nota) AS maior_nota
 FROM NOTAS_FISCAIS;
 
--- 13. MIN
+-- 14. MIN
 SELECT MIN(valor_nota) AS menor_nota
 FROM NOTAS_FISCAIS;
 
--- 14. BETWEEN
+-- 15. BETWEEN
 SELECT *
 FROM NOTAS_FISCAIS
 WHERE valor_nota BETWEEN 15000 AND 30000;
 
--- 15. LIKE
+-- 16. LIKE
 SELECT *
 FROM CLIENTES
 WHERE nome_cliente LIKE '%Pet%';
 
--- 16. UPDATE
+-- 17. UPDATE
 UPDATE MOTORISTAS
 SET telefone = '11988887777'
 WHERE id_motorista = 1;
 
--- 17. DELETE
+-- 18. DELETE
 DELETE FROM PAGAMENTOS_CLIENTES
 WHERE id_pagamento = 3;
 
--- 18. VIEW
+-- 19. VIEW
 CREATE VIEW vw_notas_motoristas AS
 SELECT
     M.nome_motorista,
