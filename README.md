@@ -54,7 +54,7 @@ O projeto possui as seguintes tabelas:
 O diagrama abaixo representa a estrutura completa do banco de dados.
 
 <p align="center">
-    <img src="imagens/DER.png" width="1000">
+    <img src="imagens/https://github.com/DionesDados/transportadora-pet-sql/blob/main/imagens/modelo_relacional.png" width="1000">
 </p>
 
 ---
