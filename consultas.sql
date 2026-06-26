@@ -17,7 +17,11 @@ SELECT * FROM CLIENTES;
 -- 4. LISTAR TODOS OS VEÍCULOS
 SELECT * FROM VEICULOS;
 
+-- =====================================================
 -- 5. INNER JOIN
+-- Relaciona os motoristas com as notas fiscais emitidas.
+-- =====================================================
+
 SELECT
     M.nome_motorista,
     NF.numero_nota,
@@ -25,6 +29,7 @@ SELECT
 FROM NOTAS_FISCAIS NF
 INNER JOIN MOTORISTAS M
 ON NF.id_motorista = M.id_motorista;
+
 
 -- 6. INNER JOIN ENTRE CLIENTES E ROTAS
 SELECT
@@ -82,26 +87,41 @@ FROM NOTAS_FISCAIS;
 SELECT MIN(valor_nota) AS menor_nota
 FROM NOTAS_FISCAIS;
 
--- 15. BETWEEN
+-- 15. CONSULTAR UM MOTORISTA ESPECÍFICO
+
+SELECT *
+FROM MOTORISTAS
+WHERE id_motorista = 1;
+
+
+-- 16. BETWEEN CONSULTAR NOTAS FISCAIS ENTRE VALORES
 SELECT *
 FROM NOTAS_FISCAIS
 WHERE valor_nota BETWEEN 15000 AND 30000;
 
--- 16. LIKE
+-- 17. LIKE - CONSULTAR CLIENTES QUE CONTENHAM A PALAVRA "PET"
 SELECT *
 FROM CLIENTES
 WHERE nome_cliente LIKE '%Pet%';
 
--- 17. UPDATE
+-- =====================================================
+-- 18. UPDATE
+-- Atualiza o telefone do motorista de código 1.
+-- =====================================================
+
 UPDATE MOTORISTAS
 SET telefone = '11988887777'
 WHERE id_motorista = 1;
 
--- 18. DELETE
+-- =====================================================
+-- 19. DELETE
+-- Remove um pagamento específico.
+-- =====================================================
+
 DELETE FROM PAGAMENTOS_CLIENTES
 WHERE id_pagamento = 3;
 
--- 19. VIEW
+-- 20. VIEW
 CREATE VIEW vw_notas_motoristas AS
 SELECT
     M.nome_motorista,
@@ -112,3 +132,49 @@ INNER JOIN MOTORISTAS M
 ON NF.id_motorista = M.id_motorista;
 
 SELECT * FROM vw_notas_motoristas;
+
+-- 21. IN CONSULTA FILTRANDO VÁRIOS VALORES
+SELECT *
+FROM ROTAS
+WHERE estado IN ('SP','RJ');
+
+-- 22. DISTINCT REMOVE VALORES REPETIDOS
+
+SELECT DISTINCT estado
+FROM CLIENTES;
+
+-- 23. INNER JOIN COMPLETO 
+
+SELECT
+    M.nome_motorista,
+    C.nome_cliente,
+    P.nome_produto,
+    R.cidade_destino,
+    NF.valor_nota
+FROM NOTAS_FISCAIS NF
+INNER JOIN MOTORISTAS M
+ON NF.id_motorista = M.id_motorista
+INNER JOIN CLIENTES C
+ON NF.id_cliente = C.id_cliente
+INNER JOIN PRODUTOS P
+ON NF.id_produto = P.id_produto
+INNER JOIN ROTAS R
+ON NF.id_rota = R.id_rota
+ORDER BY M.nome_motorista;
+
+
+-- 24. SOMA DAS NOTAS 
+
+SELECT
+    SUM(valor_nota) AS valor_total_transportado
+FROM NOTAS_FISCAIS;
+
+-- 25. QUANTIDADE DE NOTAS POR MOTORISTA 
+
+SELECT
+    M.nome_motorista,
+    COUNT(NF.id_nota) AS quantidade_notas
+FROM MOTORISTAS M
+INNER JOIN NOTAS_FISCAIS NF
+ON M.id_motorista = NF.id_motorista
+GROUP BY M.nome_motorista;
